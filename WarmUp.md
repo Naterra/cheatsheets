@@ -2,8 +2,12 @@
 Practice common data type/structure problems.  
 Copy and paste tasks into your favorite IDE or use <a target='_blank' href='https://repl.it'>Repl.it</a>
 
+- String
+- Array
+- Object
+- Class
 
-## Strings
+### Strings
 ```javascript
 const string = 'The quick brown fox jumps over the lazy dog.';
 
@@ -19,29 +23,32 @@ const string = 'The quick brown fox jumps over the lazy dog.';
 //4) Remove whitespaces from start/end of string;
 //const x = 
 
-//5) Find index of substring
+//5) Extract substring between index 2 and 4
+
+
+//6) Find index of substring
 //const idx = 
 
-//6) Extract substring 'fox' from 'my fox';
+//7) Extract substring 'fox' from 'my fox';
 //const s = 
 
-//7) repeat string 'apple' 3 times
+//8) repeat string 'apple' 3 times
 //const x = 
 
-//8) concat 2 strings 
+//9) concat 2 strings 
 //const x = 
 
-//9) Find non word characters in string
+//10) Find non word characters in string
 //const x = 
 
-//10) Replace 'fox' to 'cat'
+//11) Replace 'fox' to 'cat'
 //const x = 
 
-//11) Replace all substring occurrences in string
+//12) Replace all substring occurrences in string
 const str2 = 'Oh Mary, Mary!'; //to be 'Oh Larry, Larry!'
 //const x = 
 
-//12) Replace character at index 0,1 (any index)
+//13) Replace character at index 0,1 (any index)
 const idx = 1;
 // const newString = ...
 
@@ -49,7 +56,7 @@ const idx = 1;
 
 
  
-## Array
+### Array
 ```javascript
 const nimbersArr = [5, 4, 10, 11, 0, -10, -5];
 const fruitsArr = ['mango', 'banana', 'apple'];
@@ -91,8 +98,8 @@ const users=[
 //1) Find users whose age less or equal 10
 //2) Find the youngest user/s
 ```
-
-## Object
+ 
+### Object
 ```javascript
 const obj1 = { a: 1, b: 2 };
 
@@ -104,16 +111,23 @@ const obj2 = { a: 11, c: 22 };
 //3) Get array of object values
 //4) Get array of object entries
 //5) Loop object
+//6) Sort object {b:2,c:3,a:1} -->{a:1,b:2:c:3}
 ```
 
-## Class
+### Class
 
 ```javascript
 //1) Define Class "Person"
 //2) Create Setter method "userName"
 //3) Create Getter method "userName"
 //4) Create Static method
+//5) Create a shopping cart with discount
 ```
 
+# Common Algo Techniques
+- Two Pointers
 
-
+# Common Algorithms
+- Stack and Queue
+- Hash Table
+- 

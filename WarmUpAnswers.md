@@ -19,36 +19,38 @@ string.split(' ');
 //4) Remove whitespaces from (start,end) of string;
 string.trim();
 
-//5) Find index of substring
+//5) Extract substring between index 2 and 4
+
+//6) Find index of substring
 const idx = string.indexOf('fox'); //16
 
-//6) Extract substring 'fox' from 'my fox' 
+//7) Extract substring 'fox' from 'my fox' 
 const s  = 'fox';
 const start = string.indexOf(s); //find the index of first letter of substring
 const end = start + s.length; //find the index of last letter of substring
 const subString = string.substring(start, end); //extract substring
 
 
-//7) repeat string 'apple' 3 times
+//8) repeat string 'apple' 3 times
 'apple'.repeat(3);
 
-//8) concat 2 strings 
+//9) concat 2 strings 
 const str1='Hello';
 const str2='World';
 str1.concat(' ', str2); //'Hello World'
 
-//9) Find non word characters in string
+//10) Find non word characters in string
 string.match(/[\W]/g); //[' ',' ',...,'.']
 
-//10) Replace 'fox' to 'cat'
+//11) Replace 'fox' to 'cat'
 string.replace('fox', 'cat');//'The quick brown cat jumps over the lazy dog.'
 
 
-//11) Replace all substring occurrences in string
+//12) Replace all substring occurrences in string
 const str2 = 'Oh Mary, Mary!'; //to be 'Oh Larry, Larry!'
 str2.replaceAll('Mary', 'Larry');
 
-//12) Replace character at index  
+//13) Replace character at index  
 const idx = 1;
 let s = 'Hello World'; //to 'Wello World'
 
@@ -173,6 +175,14 @@ for(let [key, val] of Object.entries(obj)){
     //key - prop key
     //val - prop value
 }
+
+//6) Sort object {b:2,c:3,a:1} -->{a:1,b:2:c:3}
+function sortObject(obj) {
+    return Object.keys(obj).sort().reduce(function (result, key) {
+        result[key] = obj[key];
+        return result;
+    }, {});
+}
 ```
 
 ## Class
@@ -186,3 +196,4 @@ for(let [key, val] of Object.entries(obj)){
 
 
 
+ 
