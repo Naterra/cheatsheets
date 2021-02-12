@@ -34,51 +34,46 @@ As you can see, after iteration 2 the array is already sorted.
 Bubble sort, however, needs a final pass through the array to ensure that no 
 other swaps are necessary before returning the array.
 
-## Example #1
+### Example #1
 With this implementation, the code will run until the “i” variable is equal to the “len” variable, 
 which means that it may run on an already sorted array more than once.
 ```javascript
 //Time  O(n^2) - Quadratic Time
 
-let bubbleSort = (inputArr) => {
-    let len = inputArr.length;
+let bubbleSort = (arr) => {
+    let len = arr.length;
     for (let i = 0; i < len; i++) {
         for (let j = 0; j < len; j++) {
-            if (inputArr[j] > inputArr[j + 1]) {
-                let tmp = inputArr[j];
-                inputArr[j] = inputArr[j + 1];
-                inputArr[j + 1] = tmp;
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]]=[arr[j + 1],arr[j]]; //swap
             }
         }
     }
-    return inputArr;
+    return arr;
 };
 ```
 
-## Example #2
+### Example #2
 Another slightly more efficient way to code bubble sort - is to keep track of a variable “swapped” which is initially set to
 false. During each iteration, if values are swapped, then the “swapped” variable
 is set to true. Then, using a do-while loop, it will only run the code if the
 swapped variable is true, thus ensuring that only 1 extra verification iteration
 happens.
 ```javascript
-//O(n)??? - not sure
-let bubbleSort = (inputArr) => {
-    let len = inputArr.length;
+let bubbleSort = (arr) => {
+    let len = arr.length;
     let swapped;
-    
+
     do {
         swapped = false;
         for (let i = 0; i < len; i++) {
-            if (inputArr[i] > inputArr[i + 1]) {
-                let tmp = inputArr[i];
-                inputArr[i] = inputArr[i + 1];
-                inputArr[i + 1] = tmp;
+            if (arr[i] > arr[i + 1]) {
+                [arr[i], arr[i + 1]]=[arr[i + 1], arr[i]]; //swap
                 swapped = true;
             }
         }
     } while (swapped);
-    return inputArr;
+    return arr;
 };
 ```
 
