@@ -76,8 +76,8 @@ const users=[
 //6)Remove item at index
 //7)Replace item at index = 0 with new value 'carrot'
 //8)Replace item/s in array  
-//9)Swap two items ['mango', 'banana', 'apple'] to [ 'apple', 'banana','mango']
-
+//9)Swap two items ['mango', 'banana', 'apple'] to [ 'apple', 'banana','mango'] with prototype 
+//10)Swap Elements using destructuring assignment
 
 
 /************** Find **************/

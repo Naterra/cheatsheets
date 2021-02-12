@@ -113,6 +113,10 @@ Array.prototype.swap = function(item1, item2){
 fruitsArr.swap('mango', 'apple'); // [ 'apple', 'banana','mango']
 
 
+//10. Swap Elements using destructuring assignment
+const arr=[1,2,3,4,5,6];
+[arr[0], arr[1]]=['a', 'b']; // [ 'a', 'b', 3, 4, 5, 6 ]
+
 /************** Find **************/
 //1)Find index of item  'mango' in array
 const x = fruitsArr.findIndex(item=>item=='mango'); //0
