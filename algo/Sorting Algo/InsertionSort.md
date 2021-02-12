@@ -36,19 +36,36 @@ Iteration 3, key is 4 (at index 3, ): [1,3,5,**4**,6] → [1,3,4,5,6]
 Iteration 4, key is 6 (at index 4): [1,3,4,5,**6**] → [1,3,4,5,6] — because 6 was already in the right place, no changes are made and insertion sort returns the sorted array. Notice how after each step, all the items to the left of the key are already sorted.
 
 ```javascript
-let insertionSort = (inputArr) => {
-    for (let i = 1; i < inputArr.length; i++) {
-        let key = inputArr[i];
+let insertionSort = (arr) => {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
         let j  = i - 1;
-        while (j >= 0 && inputArr[j] > key) {
-            inputArr[j + 1] = inputArr[j];
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
             j--;
         }
-        inputArr[j + 1] = key;
+        arr[j + 1] = key;
     }
-    return inputArr;
+    return arr;
 };
 ```
 
+```javascript
+//using for loop
+const insertionSort = arr => {
+    for (let i = 0; i < arr.length; i++) {
+        let key = arr[i];
+        let j;
+
+        for (j = i - 1; j >= 0 && arr[j] > key; j--) {
+            arr[j + 1] = arr[j];
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+};
+insertionSort2([5,3,1,4,6]) //[1,3,4,5,6]
+```
 ### Resources
-https://medium.com/javascript-algorithms/javascript-algorithms-insertion-sort-59b6b655373c
+- <a target='_blank' href='https://medium.com/javascript-algorithms/javascript-algorithms-insertion-sort-59b6b655373c'>Insertion Sorting / Medium</a>
+- <a target='_blank' href='https://dev.to/ryan_dunton/insertion-sorting-for-beginners-in-js------fkg'>Insertion Sorting / Ryan Dunton</a>
