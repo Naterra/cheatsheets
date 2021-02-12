@@ -8,16 +8,18 @@
 
 
 
+### Complexity
 
-***There is 3 ways for solution:***  
-Iterative solution - O(n) time complexity  
-Recursive solution - 2^N time complexity  
-Memoization - 2N time complexity  
+|       |Iterative solution|Recursive solution|Memoization|
+|-------|------------------|------------------|-----------|
+| Time  | O(n)             | 2^N              | 2N        |
+| Space |                  |                  | O(2n)     |
 
 
-### 1. Implement Fibonacci sequence up to given number (Iterative solution)
+### #1. Implement Fibonacci sequence up to given number (Iterative solution)
 
 ```javascript
+// O(n) time complexity
 function fib(n){
   let arr = [0, 1];
   for (let i = 2; i<= n; i++){
@@ -27,16 +29,16 @@ function fib(n){
 }
 
 fib(8); //[0,1,1,2,3,5,8,13,21]
-// O(n) time complexity
 ```
 
 
 
 
-### 2. Return an N-th element in Fibonacci sequence (Iterative solution)
+### #2. Return an N-th element in Fibonacci sequence (Iterative solution)
 Given a number N return the index value of the Fibonacci sequence
 
 ```javascript
+// O(n) time complexity
 function fib(n){
     const series=[0,1];
 
@@ -50,13 +52,12 @@ function fib(n){
 }
 
 fib(6); //8
-// O(n) time complexity
 ```
 
 
-### 3. Calculate the previous 2 numbers for given N(index) number (Iterative solution)
+### #3. Calculate the previous 2 numbers for given N(index) number (Iterative solution)
 ```javascript
-// Loop -  O(n) complexity
+// O(n) time complexity
 function fibonacci(idx){
   let arr = [0,1];
   
@@ -66,30 +67,37 @@ function fibonacci(idx){
  return `${arr[idx-2]}, ${arr[idx-1]}`;
 }
 
-fibonacci(5); // "2,3"
-// O(n) time complexity
+fibonacci(5); // "2, 3"
 ```
 
-### 4. Recursive solution  / 2^N time complexity
+### #4. Recursive solution  / 2^N Exponential Time complexity
 ```javascript
-function fibonacci(num) {
-  if (num <= 1) return 1;
-  return fibonacci(num - 1) + fibonacci(num - 2);
+function fib(n) {
+  if (n < 2) return n;
+  return fib(n - 1) + fib(n - 2);
 }
-fibonacci(5); //8
+fib(5); //8
 ```
 
 ![image](https://user-images.githubusercontent.com/8204364/107128583-d6991980-688c-11eb-9b5f-3a9f2109dda9.png)
 
-### 5. Memoization
+### #5. Memoization
 > Is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls.
 
-Basically, if we just store the value of each index in a hash, we will avoid the computational time of that value for the next N times. This change will increase the space complexity of our new algorithm to O(n) but will dramatically decrease the time complexity to 2N which will resolve to linear time since 2 is a constant.
+Exponential time complexity for recursive solution can be improved using a 
+memoization. Therefore fib(n) would not re-calculate whole sequence again and again,
+instead, return stored value.
+
+
+Basically, if we just store the value of each index in a hash, we will avoid the computational
+time of that value for the next N times. This change will increase the space complexity of our 
+new algorithm to **O(n)** but will dramatically decrease the time complexity to **2N** which will resolve 
+to linear time since 2 is a constant.
 
 ```javascript
-function fib(n, memo){
-    memo = memo || {};
-
+//Time - O(n)
+//Space - O(2n)
+function fib(n, memo={}){
     if (memo[n]) return memo[n];
     if (n == 0) return 0;
     else if (n == 1) return 1;
