@@ -85,7 +85,7 @@ Each node in a singly-linked list contains not only the value but also a referen
 - Implement custom **forEach**() method
 
 <mark>!</mark> - While working with LL methods, be careful with cases when List has no Nodes   
-<mark>!</mark> - Try to reuse existing methods where possible
+<mark>!</mark> - Try to reuse existing methods where possible   
 <mark>!</mark> - addAtHead, addAtTail, removeFirst, removeLast is only for pricticing purpose. On real interview use addAtIndex(), deleteAtIndex()
 
 
@@ -346,12 +346,134 @@ for(let node of list){
 Return the middle node of a linked list.   
 If the list has an even number of elements, return the node at the end of the first half of the list.   
 
-Do not use a counter variable, do not retrieve the size of the list, and only iterate through the list one time.
+**Do not** :
+- use a counter variable,
+- retrive the size of the list, and only iterate through the list one time.
+```javascript
+//Example:
+{a}=>{b}=>{c}  //b is a midpoint
+{a}=>{b}=>{c}=>{d}  //b is a midpoint
+```
+
+```javascript
+function midpoint(list){
+    let slow = list.head;
+    let fast = list.head;
+
+    while(fast.next && fast.next.next){
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;
+}
+```
+**Explanation**:   
+We can use here a **two pointers technique**. 'Slow' pointer will move 1 step at a time, while 'Fast' pointer -2 steps at a time.
+In this case, when 'Fast' reaches the end of the list, 'Slow' pointer would stop in the middle.
+
+
+### Ex. 1 -  
+Given a Linked List and integer n, return the element n spaces from the last Node in the list.
+Do not call the 'size' method of the linked list. Assume that n will always be less than the length of the list.
+
+>Example:   
+> list: [a]=>[b]=>[c]=>[d],    
+> n:2  
+> return: [b]
+
+### Solution:
+- **two pointers technique**
+  
+It doesnt necessary that 'slow' and 'fast' suppose to move instantly with some specific distance between them. 
+In this particular case, we even can't configure ahead 'fast' value. But, we can let it go until it moves **N** spaces ahead of 'slow'. As soon as our 'slow' delays on **N steps**, it can move ahead either.
+
+When loop reach the last element of the Linked List, 'slow' will point on right Node (n spaces from the last Node ). Return it.
 
 
 ```javascript
-midPoint(){
-    
+function fromLast(list, n){
+    let slow  = list.head;
+    let fast  = list.head;   
+    let i=0;
+
+    while(fast){
+      if(!fast.next) return slow;
+      if(i>=n) slow = slow.next; //increase with delay
+      fast = fast.next;
+      i++;
+    }
+    return slow;
+}
+```
+
+```javascript
+//other aproach
+function fromLast(list, n){
+  let slow  = list.head;
+  let fast  = list.head;
+  
+  //move 'fast' ahead on N spaces
+  while(n>0){
+      fast = fast.next;
+      n--;
+  }
+  
+  //move them together 
+  while(fast.next){
+    slow  = slow.next; 
+    fast  = fast.next; 
+  }
+}
+```
+<mark>!</mark> Both solutions O(n) - Linear Time complexity
+
+
+# Circular Linked List
+
+---
+
+[comment]: <> (<img src='https://user-images.githubusercontent.com/8204364/107897798-15237980-6f08-11eb-9ab1-ad1768722556.png'/>)
+
+<img width='500' src='https://user-images.githubusercontent.com/8204364/107897851-3a17ec80-6f08-11eb-8111-5619e6f94a11.png'/>
+
+### Specification
+- no tail
+
+
+### Creation
+```javascript
+const a = new Node('a');
+const b = new Node('b');
+const c = new Node('c');
+const l = new List();
+l.head = a;
+a.next = b;
+b.next = c;
+c.next = b;
+```
+
+
+### Ex. 1 - Validate Circular Linked List
+Given a linked List, return true if the list is circular, false if it is not.
+
+**Solution:** We can use **two pointers technique (slow/fast)** to determine if the linked List is circular.
+
+Both pointers will start at head. 'Slow' with one step at a time and 'Fast'- with 2 steps at a time. 
+If list is circular, both pointers will meet each other at same Node. If Linked List is not circular, then 'Fast' discover tail with next=0, and we return false at that case.
+
+
+```javascript
+function isCircular(list){
+  let slow=list.head;
+  let fast=list.head;
+
+  while(fast.next && fast.next.next ){
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if(slow === fast) return true; //compare excluding initial point
+  }
+  return false;
 }
 ```
 
@@ -361,6 +483,6 @@ midPoint(){
 
 
 
+# Resources
 
-
-
+https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547202#notes
