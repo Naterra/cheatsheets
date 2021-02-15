@@ -1,9 +1,11 @@
 # Linked List
 
-> The linked List is an ordered collection of data. 
-> The collection contains a number of different nodes, where each Node contain some amount of data along with a reference to the next node.
+ 
+> **Linked List** - is an ordered collection of data. The collection contains a number of different nodes, where each Node contain some amount of data along with a reference to the next node.
 >
-> - Linear Data Structure 
+> **Linked list** - is a linear collection of data elements whose order is not given by their physical placement in memory.
+>
+> Linear Data Structure 
 
 ### Tyes of Linked List
 - **Singly** linked list
@@ -12,7 +14,7 @@
 
 ### Structure of Linked List
 - Head
-- Tail
+- Tail (if not Circular)
 - Nodes
 
 ### Complexity
@@ -20,13 +22,21 @@
 
  
  
-<img width='600' src='https://user-images.githubusercontent.com/8204364/107837632-de1a6000-6d6f-11eb-9319-b1c04cea8e60.png'/>
 
 
+## Hints
 
-[comment]: <> (<img width='600' src='https://user-images.githubusercontent.com/8204364/107837663-0efa9500-6d70-11eb-9f7b-c660dca9904e.png'/>)
+- Reuse class methods
+- Eficiency of some methods could be improved by creating **size** and **tail** properties in the linkedList class. 
 
-Bellow is a very basic implementation of Linked List and Node.
+
+## Singly Lnked List
+Singly Lnked List is a most basic implementation of Linked List.
+Each node in a singly-linked list contains not only the value but also a reference field to link to the next node. By this way, the singly-linked list organizes all the nodes in a sequence.
+The first node is called the head while the last node is called the tail.
+
+<img width='500' src='https://user-images.githubusercontent.com/8204364/107837632-de1a6000-6d6f-11eb-9319-b1c04cea8e60.png'/>
+
 
 ### Node
 ```javascript
@@ -62,9 +72,6 @@ node.next = new Node(6);
 node.next.next = new Node(15);
 ```
 
-## Singly Lnked List
-Singly Lnked List is a most basic implementation.
-Each node in a singly-linked list contains not only the value but also a reference field to link to the next node. By this way, the singly-linked list organizes all the nodes in a sequence.
 
 # Common Tasks
 
@@ -76,7 +83,7 @@ Each node in a singly-linked list contains not only the value but also a referen
     - Implement method **getSize**()
     - Implement method **getFirst**()
     - Implement method **getLast**()
-    - Implement method **get**(index)
+    - Implement method **getAtIndex**(index)
 - Remove  
     - Implement method **removeFirst**()
     - Implement method **removeLast**()
@@ -84,14 +91,25 @@ Each node in a singly-linked list contains not only the value but also a referen
 - Implement method **clear**()
 - Implement custom **forEach**() method
 
-<mark>!</mark> - While working with LL methods, be careful with cases when List has no Nodes   
-<mark>!</mark> - Try to reuse existing methods where possible   
-<mark>!</mark> - addAtHead, addAtTail, removeFirst, removeLast is only for pricticing purpose. On real interview use addAtIndex(), deleteAtIndex()
+<mark>!</mark> - While working with LL methods, be careful with cases when List has no Nodes.    
+<mark>!</mark> - addAtHead, addAtTail, removeFirst, removeLast is only for practicing purpose. On real interview use addAtIndex(), deleteAtIndex()
 
 
-### addAtHead()
+## List Traversal
+In most cases, we will use the head node (the first node) to represent the whole list. Unlike the array, we are not able to access a random element in a singly-linked list in constant time. If we want to get the i-th element, we have to traverse from the head node one by one. It takes us O(N) time on average to visit an element by index, where N is the length of the linked list.
+
+> {23}=>{6}=>{2}=>{3}=>{4}
+
+For instance, in the example above, the head is the node 23. The only way to visit the 3rd node is to use the "next" field of the head node to get to the 2nd node (node 6); Then with the "next" field of node 6, we are able to visit the 3rd node.
+
+It could be efficient to store tail reference to a node and length, to simplify addition at the end of LinkedList and getting LinkedList length in the future.
+
+
+
+### .addAtHead()
+Implement method to add Node at the head. Make sure it would not overwrite existing data at head.
 ```javascript
-//make sure it would not overwrite existing data at head
+//O(1)
 addAtHead(data){
     this.head = new Node(data, this.head);
 }
@@ -100,7 +118,7 @@ addAtHead(data){
 //  }
 ```
 
-### getSize()
+### .getSize()
 Returns the number of nodes in the Linked List.
 ```javascript
 getSize(){
@@ -115,7 +133,7 @@ getSize(){
 }
 ```
 
-### getFirst()
+### .getFirst()
 Return the first node of a LL.
 ```javascript
 getFirst(){
@@ -123,7 +141,7 @@ getFirst(){
 }
 ```
 
-### getLast()
+### .getLast()
 Return the last node of a Linked List or NULL if LL is emply.
 ```javascript
 getLast(){
@@ -138,7 +156,7 @@ getLast(){
 }
 ```
 
-### clear()
+### .clear()
 Clear method empties the linked List.
 ```javascript
 clear(){
@@ -146,8 +164,8 @@ clear(){
 }
 ```
 
-### removeFirst()
-Remove first Node of LL. The Lists head now should be the second element.
+### .removeFirst()
+Remove first Node of Linked List. The Lists head now should be the second element.
 ```javascript
 removeFirst(){
     if(!this.head) return; //prevent error
@@ -155,22 +173,22 @@ removeFirst(){
 }
 ```
 
-### removeLast()
+### .removeLast()
 Remove the last node of the chain.
 
 <img width='600' src='https://user-images.githubusercontent.com/8204364/107842781-c2c14c00-6d93-11eb-9d77-7076ed005fb3.png'/>
 
 
 
-#### #1. Example
+
 ```javascript
+// Example #1
 removeLast(){
     let node = this.head;
 
     //Loop until last node before the tail (tail.next == null)
     //While node has next prop, it is not a tail
     while(node.next){
-        //If next node has no next, then it's tail
         //Set current node.next to null to define new tail 
         if(!node.next.next) node.next=null;
         else node = node.next;
@@ -178,9 +196,9 @@ removeLast(){
 }
 ```
 
-#### #2. Example
-Use **two pointers technique**
+ 
 ```javascript
+// Example #2 - two pointers technique
 removeLast(){
     let prev=null;
     let node=this.head;
@@ -193,32 +211,23 @@ removeLast(){
 }
 ```
 
-### addAtTail()
+### .addAtTail()
 Inserts a new node with provided data at the end of the chain.
 
 ```javascript
+// O(N). It could be O(1) if this.tail reference was saved 
 addAtTail(val){
-    //If List has no Nodes yet, set new value as a Head Node and return.
-    if(!this.head){
-      this.head = new Node(val);
-      return;
-    }
-
     let node = this.head;
     
     //Loop up to tail Node (tailNode.next == null)
     while(node){
-      //It's a tail! Add next Node to it!  
-      if(!node.next) {
-        node.next = new Node(val);
-        break;
-      }
-      
-      node=node.next;
+        node = node.next;
     }
+    node.next = new Node(val);
 }
 
-//ha-ha, that was wrong solution, use this one instead 
+//ha-ha, that was wrong solution, use this one instead
+//As I said earlier, reuse methods where it's possible
 addAtTail(val){
     let last = this.getLast();
     if(!last) this.head = new Node(val);
@@ -227,10 +236,12 @@ addAtTail(val){
 ```
 
 
-### getAtIndex()
+### .getAtIndex()
 Returns the node at the provided index
 ```javascript
+//O(N)
 getAtIndex(idx){
+  if(idx < 0) return null;
   let node = this.head;
   let n=0;
 
@@ -246,7 +257,7 @@ getAtIndex(idx){
 ```
 
 [comment]: <> (### removeAt&#40;&#41;)
-### deleteAtIndex()
+### .deleteAtIndex()
 Removes node at the provided index.   
 
 For example, removing Node at index=1 could be implemented by assigning new next value to previous Node. 
@@ -274,28 +285,37 @@ deleteAtIndex(idx){
 }
 ```
 
-[comment]: <> (### insertAt&#40;&#41;)
-### addAtIndex()
-Create an insert a new node at provided index. If index is out of bounds, add the node to the end of the list
+
+### .addAtIndex()
+Create and insert a new node at provided index. If index is out of bounds, add the node to the end of the list
 
 Similar to deleteAtIndex(), calculate prevNode, currentNode and assign prevNode.next to point on NewNode and NewNode.next to point at currentNode.
 ```javascript
 addAtIndex(idx, val){
-   // const newNode = new Node(val); 
-
    //special case when idx at head and no prevNode exist
-  if(idx==0){
-    this.head = new Node(val, this.head.next);
-  }
+  if(idx==0) this.head = new Node(val, this.head.next);
+  
   else{
     const prevNode = this.getAtIndex(idx-1) || this.getLast();
     if(!prevNode) return; //if given index exceeds List chain size
-    prevNode.next =new Node(val,prevNode.next );
+    prevNode.next = new Node(val,prevNode.next );
   }
-
 }
 ```
-### custom forEach() to iterate the Linked List
+### .update()
+Update value at index, return undefeined if index not exist
+```javascript
+update(idx, val){
+  let node = this.getAtIndex(idx);
+  if(node) node.val = val;
+}
+```
+ 
+  
+  
+
+
+## Implement custom forEach() to iterate the Linked List
 Calls the provided function with every node of the chain and the index of the node.
 ```javascript
 forEach(fn){
@@ -309,14 +329,11 @@ forEach(fn){
   }
 }
 
-list.forEach((item, i)=>{
-    ...
-});
+list.forEach((item, i)=>{ ...});
 ```
 
 
-### custom 'for of'
-
+## Implement custom 'for of' to iterate the Linked List
 
 - <a href='https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547194#overview'>Generators/Stephen Grider</a>
 
@@ -338,13 +355,11 @@ class LinkedList{
 for(let node of list){
     console.log({node});
 }
-
 ```
 
 
-### Midpoint of Linked List
-Return the middle node of a linked list.   
-If the list has an even number of elements, return the node at the end of the first half of the list.   
+## Find Midpoint of Linked List
+Return the middle node of a Linked List. If the list has an even number of elements, return the node at the end of the first half of the list.   
 
 **Do not** :
 - use a counter variable,
@@ -368,11 +383,11 @@ function midpoint(list){
 }
 ```
 **Explanation**:   
-We can use here a **two pointers technique**. 'Slow' pointer will move 1 step at a time, while 'Fast' pointer -2 steps at a time.
+We can use a **two pointers technique**. 'Slow' pointer will move 1 step at a time, while 'Fast' pointer -2 steps at a time.
 In this case, when 'Fast' reaches the end of the list, 'Slow' pointer would stop in the middle.
 
 
-### Ex. 1 -  
+## Return the Node places N spaces from the Tail  
 Given a Linked List and integer n, return the element n spaces from the last Node in the list.
 Do not call the 'size' method of the linked list. Assume that n will always be less than the length of the list.
 
@@ -384,10 +399,11 @@ Do not call the 'size' method of the linked list. Assume that n will always be l
 ### Solution:
 - **two pointers technique**
   
-It doesnt necessary that 'slow' and 'fast' suppose to move instantly with some specific distance between them. 
-In this particular case, we even can't configure ahead 'fast' value. But, we can let it go until it moves **N** spaces ahead of 'slow'. As soon as our 'slow' delays on **N steps**, it can move ahead either.
+It doesn't necessary that 'slow' and 'fast' suppose to move instantly with some specific distance between them. 
+In this particular case, we even can't configure ahead 'fast' value. But, we can let it go until it moves **N** spaces ahead of 'slow'.
+As soon as our 'slow' delays on **N steps**, it can move ahead either.
 
-When loop reach the last element of the Linked List, 'slow' will point on right Node (n spaces from the last Node ). Return it.
+When loop reach the last element of the Linked List, 'slow' will point on right Node (n spaces from the last Node ).  
 
 
 ```javascript
@@ -453,13 +469,13 @@ c.next = b;
 ```
 
 
-### Ex. 1 - Validate Circular Linked List
+### #1 - Validate Circular Linked List
 Given a linked List, return true if the list is circular, false if it is not.
 
 **Solution:** We can use **two pointers technique (slow/fast)** to determine if the linked List is circular.
 
 Both pointers will start at head. 'Slow' with one step at a time and 'Fast'- with 2 steps at a time. 
-If list is circular, both pointers will meet each other at same Node. If Linked List is not circular, then 'Fast' discover tail with next=0, and we return false at that case.
+If list is circular, both pointers will meet each other at same Node. If Linked List is not circular, then 'Fast' discover tail with next=null, and we return false in that case.
 
 
 ```javascript
@@ -477,12 +493,25 @@ function isCircular(list){
 }
 ```
 
+# Doubly linked list
 
+<img width='400' src='https://user-images.githubusercontent.com/8204364/107905761-79046d00-6f1d-11eb-8309-f1d37da7abcf.png'/>
 
+Doubly linked list is a type of List where each Node has pointer to next and prev node.
 
-
+### Node
+```javascript
+class Node{
+    constructor(data, next=null, prev=null){
+        this.data=data;
+        this.next=next;   
+        this.prev=prev;  
+    }
+}
+```
 
 
 # Resources
 
-https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547202#notes
+ 
+- [Linked List / Stephen Grider](https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547202#notes)
