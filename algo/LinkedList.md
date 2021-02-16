@@ -358,6 +358,8 @@ for(let node of list){
 ```
 
 
+
+
 ## Find Midpoint of Linked List
 Return the middle node of a Linked List. If the list has an even number of elements, return the node at the end of the first half of the list.   
 
@@ -444,6 +446,31 @@ function fromLast(list, n){
 <mark>!</mark> Both solutions O(n) - Linear Time complexity
 
 
+## Reverse Linked List in place
+Reverse Linked List in place and return new head.
+
+**in-place algorithm** is an algorithm which transforms input using no auxiliary data structure. However, a small amount of extra storage space is allowed for auxiliary variables.
+
+```javascript
+//O(n) traversing the list only once
+//Space O(1) because our approach is reversing the list in place and not using any additional space
+function reverseList(head) {
+  let current =  head;
+  let next = null;
+  let prev = null;
+
+  while(current){
+    next = current.next;
+    current.next = prev;
+
+    prev = current;
+    current = next;
+  }
+  return prev;
+};
+```
+
+
 # Circular Linked List
 
 ---
@@ -511,7 +538,11 @@ class Node{
 ```
 
 
-# Resources
+# Practice
+- [Reverse Singly Linked list / LeetCode](https://leetcode.com/problems/reverse-linked-list/)
+- [Reverse Singly Linked list between position n and m/ LeetCode](https://leetcode.com/problems/reverse-linked-list-ii/)
+- Flatten a Multilevel Doubly Linked List / LeetCode
 
- 
+
+# Resources
 - [Linked List / Stephen Grider](https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547202#notes)
