@@ -80,6 +80,9 @@ const users=[
 //10)Swap Elements using destructuring assignment
 
 
+/************** Loop **************/
+// 1) Loop array using *for of* with immediate access to index and value
+
 /************** Find **************/
 //1)Find index of item  'mango' in array
 //2)Find index of item in users  array where item.age == '20'

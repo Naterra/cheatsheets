@@ -117,6 +117,12 @@ fruitsArr.swap('mango', 'apple'); // [ 'apple', 'banana','mango']
 const arr=[1,2,3,4,5,6];
 [arr[0], arr[1]]=['a', 'b']; // [ 'a', 'b', 3, 4, 5, 6 ]
 
+
+/************** Loop **************/
+// 1) Loop array using *for of* with immediate access to index and value
+for(let [i, curr] of arr.entries()){ }
+
+
 /************** Find **************/
 //1)Find index of item  'mango' in array
 const x = fruitsArr.findIndex(item=>item=='mango'); //0
